@@ -54,26 +54,64 @@ class Solution {
      
         for(int prints: accountTotals){
                  tempString = Integer.toString(count+1);
-        if (tempString.equals("1")){
+        if (tempString.substring(tempString.length()-1, tempString.length()).equals("1")){
             suffix = "st";
-        }else if(tempString.equals("3")){
+        }else if(tempString.substring(tempString.length()-1, tempString.length()).equals("3")){
             suffix = "rd";
-        }else if (tempString.equals("2")){
+        }else if (tempString.substring(tempString.length()-1, tempString.length()).equals("2")){
             suffix = "nd";
+        }else{
+            suffix = "th";
         }
             count++;
-            System.out.println(count  + suffix +" customer has wealth = " + prints);
-            
-            
-            if(test < prints){
-                intercept = count-1;
-            }
-            test = prints;
+            System.out.println(count  + suffix +" customer has wealth = " + prints); 
+          
         }
-       
-   
-        System.out.println("The " + (intercept+1) + suffix + " customer is the richest with a wealth of " + accountTotals[intercept]);
+    
+             for(int i = 0; i < accountTotals.length; i++){
+            for(int j=0; j < accountTotals.length; j++){
+                
+                if(accountTotals[i] < accountTotals[j]){
+                    if(accountTotals[intercept] < accountTotals[j]){
+                    intercept = j;
+                    }
+                }
+            }
+                  tempString = Integer.toString(count+1);
+        if (tempString.substring(tempString.length()-1, tempString.length()).equals("1")){
+            suffix = "st";
+            try{
+                if(tempString.substring(tempString.length()-2, tempString.length()-1).equals("1")){
+                    suffix = "th";
+                }
+            }catch(Exception e){
+                
+            }
+        }else if(tempString.substring(tempString.length()-1, tempString.length()).equals("3")){
+            suffix = "rd";
+             try{
+                if(tempString.substring(tempString.length()-2, tempString.length()-1).equals("1")){
+                    suffix = "th";
+                }
+            }catch(Exception e){
+                
+            }
+        }else if (tempString.substring(tempString.length()-1, tempString.length()).equals("2")){
+            suffix = "nd";
+             try{
+                if(tempString.substring(tempString.length()-2, tempString.length()-1).equals("1")){
+                    suffix = "th";
+                }
+            }catch(Exception e){
+                
+            }
+        }else{
+            suffix = "th";
+        }
+             }
+        System.out.println("The " + (intercept) + suffix + " customer is the richest with a wealth of " + accountTotals[intercept]);
          return accountTotals[intercept];
-    }
+    
   
+}
 }
